@@ -5,14 +5,10 @@ body {
 }
 
 .DESKTOP-DIV {
-    height: 350vh;
-    width: 200vw;
+    height: 200vh;
+    width: 100vw;
 
-    margin-left:-15px;
-    margin-top:-15vh;
 
-    transform: rotate(45deg);
-    transform: skew(15deg, 15deg);
 
     background-color: rgb(40, 40, 40);
 
@@ -23,17 +19,18 @@ body {
 
 .tile {
     background-color: black;
-    outline: 4px ridge white;
-    transition-duration: 1s;
+    margin:1px;
+
+    text-align: center;
 }
 
 .tile:hover {
-    background-color: blue;
-    outline: 4px ridge white;
+    outline: 1px solid white;
+    background-color: rgb(40, 40, 40);
+    color: white;
+}
 
-    transform: rotate(135deg);
-    transform: skew(-18deg, -18deg);
-    
-
-    transition-duration: 0.1s;
+.timg {
+    width: 50px;
+    height: 50px;
 }
