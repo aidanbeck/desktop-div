@@ -1,5 +1,5 @@
 # desktop-div
-An html element that imitates a computer's desktop.
+An html element that imitates an operating system's grid-based desktop.
 Designed to be customizable & implemented into to other projects.
 
 Planned Features:
