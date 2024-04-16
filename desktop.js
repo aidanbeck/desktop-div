@@ -8,7 +8,12 @@ rows = columns;
 function createTile() {
     const tile = document.createElement("div");
     tile.classList.add("tile");
-    tile.draggable = true;
+
+    const icon = document.createElement("div");
+    icon.classList.add("icon");
+    icon.draggable = true;
+
+    tile.appendChild(icon);
     
     return tile;
 }
@@ -18,14 +23,17 @@ function createTiles(quantity) {
     for (i = 0; i < rows; i++) {
         for (j=0; j < columns; j++) {
             let tileElement = createTile();
-
-            if (j == 1 && i < 6) {
-                tileElement.innerHTML = "<img class='timg' src='icon.png'><br>" + i + " - " + j;
-            } else {
-                tileElement.innerHTML = i + " - " + j;
-            }
             
-            //tileElement.style.zIndex = i*columns + (rows-j);
+            tileElement.style.zIndex = i*columns + (rows-j);
+
+            tileElement.onclick = function() {
+
+                if (this.firstChild.innerHTML == "") {
+                    this.firstChild.innerHTML = "<img class='icon-image' src='images/ned.png'>";
+                } else {
+                    this.firstChild.innerHTML = "";
+                }
+            }
             wrapper.appendChild(tileElement);
         }
         
