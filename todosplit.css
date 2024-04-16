@@ -2,35 +2,45 @@ body {
     height: 100vh;
     overflow: hidden;
     margin: 0px;
+
+    image-rendering: pixelated;
+    user-select: none;
 }
 
 .DESKTOP-DIV {
     height: 200vh;
     width: 100vw;
 
-
-
     background-color: rgb(40, 40, 40);
 
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
+
 }
 
 .tile {
     background-color: black;
-    margin:1px;
+    background-image: url("images/dirt.png");
+    background-size: 100%;
+    margin:0px;
 
     text-align: center;
+
+    position: relative;
+
 }
 
 .tile:hover {
-    outline: 1px solid white;
     background-color: rgb(40, 40, 40);
+    background-image: url("images/grass.png");
     color: white;
 }
 
-.timg {
-    width: 50px;
-    height: 50px;
+.icon {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: -100%;
+    pointer-events: none; /*lets hovering mouse pass through*/
 }

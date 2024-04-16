@@ -8,7 +8,7 @@ rows = columns;
 function createTile() {
     const tile = document.createElement("div");
     tile.classList.add("tile");
-    tile.draggable = true;
+    //tile.draggable = true;
     
     return tile;
 }
@@ -18,14 +18,17 @@ function createTiles(quantity) {
     for (i = 0; i < rows; i++) {
         for (j=0; j < columns; j++) {
             let tileElement = createTile();
-
-            if (j == 1 && i < 6) {
-                tileElement.innerHTML = "<img class='timg' src='icon.png'><br>" + i + " - " + j;
-            } else {
-                tileElement.innerHTML = i + " - " + j;
-            }
             
-            //tileElement.style.zIndex = i*columns + (rows-j);
+            tileElement.style.zIndex = i*columns + (rows-j);
+
+            tileElement.onclick = function() {
+
+                if (this.innerHTML == "") {
+                    this.innerHTML = "<img class='icon' src='images/ned.png'>";
+                } else {
+                    this.innerHTML = "";
+                }
+            }
             wrapper.appendChild(tileElement);
         }
         
