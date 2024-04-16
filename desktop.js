@@ -11,7 +11,25 @@ function createTile() {
 
     const icon = document.createElement("div");
     icon.classList.add("icon");
-    icon.draggable = true;
+
+    icon.addEventListener("dragstart", drag);
+    icon.addEventListener("drop", drop);
+    icon.addEventListener("dragover", allowDrop);
+    icon.addEventListener("dragleave", disallowDrop); 
+
+
+    icon.onclick = function() {
+
+        icon.style.backgroundColor = "";
+
+        if (icon.innerHTML == "") {
+            icon.draggable = true;
+            icon.innerHTML = "<img class='icon-image' src='images/ned.png'>";
+        } else {
+            icon.innerHTML = "";
+            icon.draggable = false;
+        }
+    }
 
     tile.appendChild(icon);
     
@@ -24,16 +42,11 @@ function createTiles(quantity) {
         for (j=0; j < columns; j++) {
             let tileElement = createTile();
             
-            tileElement.style.zIndex = i*columns + (rows-j);
+            const zIndex = i*columns + (rows-j);
 
-            tileElement.onclick = function() {
+            tileElement.style.zIndex = zIndex;
+            tileElement.firstChild.style.zIndex = zIndex + 1; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
 
-                if (this.firstChild.innerHTML == "") {
-                    this.firstChild.innerHTML = "<img class='icon-image' src='images/ned.png'>";
-                } else {
-                    this.firstChild.innerHTML = "";
-                }
-            }
             wrapper.appendChild(tileElement);
         }
         
