@@ -4,10 +4,10 @@
 }
 
 
-/*.tile {
+.tile {
     background-color: black;
     background-image: url("images/dirt.png");
-}*/
+}
 /*.tile:hover {
     background-image: url("images/grass.png");
 }*/
@@ -37,6 +37,15 @@
     filter: drop-shadow(0px 0px 5px red); /*selection glow*/
 }
 
+
+
+/* .daylight {
+    filter: brightness(100%) hue-rotate(-20deg) sepia(30%);
+}
+
+.daylight:hover {
+    filter: brightness(50%) hue-rotate(20deg) grayscale(10%);
+} */
 
 /* image scaling & anchoring*/
 

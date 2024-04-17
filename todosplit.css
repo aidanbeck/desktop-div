@@ -1,23 +1,42 @@
 body {
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     margin: 0px;
+    scrollbar-width: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2), 1fr);
 }
 
 .DESKTOP-DIV {
-    height: 200vh;
-    width: 100vw;
+
+    /*width: calc(var(--scale) * var(--columns))px;
+    height: calc(var(--scale) * var(--rows))px;*/
+
+
+    position: relative;
+    left: var(--worldx);
+    top: var(--worldy);
 
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
 
     user-select: none;
+
+    /* transition: left 1s, top 1s; */
 }
+
+/* .DESKTOP-DIV:hover {
+    left: -10%;
+    top: -10%;
+} */
 
 .tile {
     background-size: 100%;
     margin:0px;
+    position:relative;
 }
 
 .icon {

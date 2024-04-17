@@ -1,10 +1,3 @@
-const wrapper = document.getElementsByClassName("DESKTOP-DIV")[0];
-
-let tilePixels = 70;
-let columns = Math.floor(document.body.clientWidth / tilePixels);
-let rows = Math.floor(document.body.clientHeight / tilePixels);
-rows = columns;
-
 var randomImages = [
     "<img class='icon-image ned player-glow' src='images/ned.png'>",
 
@@ -61,16 +54,16 @@ function getZIndex(element) {
     return parseInt(zIndex); //may not need
 }
 
-function createTiles(quantity) {
+function createTiles(wrapper, columns, rows) {
 
     for (i = 0; i < rows; i++) {
         for (j=0; j < columns; j++) {
             let tileElement = createTile();
             
-            const zIndex = i*columns + (rows-j);
+            //const zIndex = i*rows + (columns-j);
 
-            tileElement.style.zIndex = zIndex;
-            tileElement.firstChild.style.zIndex = zIndex * 2; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
+            //tileElement.style.zIndex = i + (1/j);
+            tileElement.firstChild.style.zIndex = i + 2; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
             wrapper.appendChild(tileElement);
         }
         
@@ -78,21 +71,34 @@ function createTiles(quantity) {
 
 }
 
-createTiles(columns * rows);
 
-const createGrid = () => {
+var worldx = "0%";
+var worldy = "0%";
+var worldscale = 60;
+
+const createGrid = (wrapper,columns,rows,scale) => {
     
-    wrapper.innerHTML = "";
-    columns = Math.floor(document.body.clientWidth / tilePixels);
-    rows = Math.floor(document.body.clientHeight / tilePixels);
-    rows = columns;
+    wrapper.style.setProperty("--worldx", worldx);
+    wrapper.style.setProperty("--worldy", worldy);
 
     wrapper.style.setProperty("--columns", columns);
     wrapper.style.setProperty("--rows", rows);
+    wrapper.style.setProperty("height", scale*rows);
 
-    createTiles(columns * rows);
+    wrapper.style.height = scale*rows + "px";
+    wrapper.style.width = scale*columns + "px";
+
+    createTiles(wrapper, columns, rows);
 }
 
-window.onresize = () => createGrid();
+const chunk0 = document.getElementsByClassName("DESKTOP-DIV")[0]; chunk0.style.zIndex = 0; //this number will be chunk y level
+const chunk1 = document.getElementsByClassName("DESKTOP-DIV")[1]; chunk0.style.zIndex = 0;
 
-createGrid();
+const chunk2 = document.getElementsByClassName("DESKTOP-DIV")[2]; chunk0.style.zIndex = 1;
+const chunk3 = document.getElementsByClassName("DESKTOP-DIV")[3]; chunk0.style.zIndex = 1;
+
+
+createGrid(chunk0, 16, 16, worldscale);
+createGrid(chunk1, 16, 16, worldscale);
+createGrid(chunk2, 16, 16, worldscale);
+createGrid(chunk3, 16, 16, worldscale);
