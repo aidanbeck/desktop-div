@@ -2,32 +2,22 @@ body {
     height: 100vh;
     overflow: hidden;
     margin: 0px;
-
-    image-rendering: pixelated;
-    user-select: none;
 }
 
 .DESKTOP-DIV {
     height: 200vh;
     width: 100vw;
 
-    background-color: rgb(40, 40, 40);
-
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
 
+    user-select: none;
 }
 
 .tile {
-    background-color: black;
-    background-image: url("images/dirt.png");
     background-size: 100%;
     margin:0px;
-}
-
-.tile:hover {
-   /*background-image: url("images/grass.png");*/
 }
 
 .icon {
@@ -35,32 +25,8 @@ body {
     height: 100%;
     position: relative;
 }
-.remove-indicator { /*done for a split second so the draggable bitmap doesn't have the lighter square*/
-    background-color: blue;
-}
-.icon:hover {
-    background-color:rgba(256,256,256,.125);
-}
-.dragging-over { /*duplicate of icon:hover, but hovers cannot be detected when dragging, so it detects if it's currently dragging over the spot*/
-    background-color:rgba(256,256,256,.125);
-}
-
-
-.icon:hover .icon-image {
-    filter: drop-shadow(0px 0px 5px cyan); /*cyan for moveable, white for not, red for hostile?*/
-}
 
 .icon-image {
     position: absolute;
-    width: 80%;
-    left: 10%;
-    top: -100%;
     pointer-events: none; /*lets hovering mouse pass through*/
-
-    filter: drop-shadow(-2px 6px 5px rgba(0,0,0,0.8));
-
-}
-
-.icon.dragging {
-    border: 10px solid red;
 }

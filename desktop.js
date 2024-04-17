@@ -5,6 +5,22 @@ let columns = Math.floor(document.body.clientWidth / tilePixels);
 let rows = Math.floor(document.body.clientHeight / tilePixels);
 rows = columns;
 
+var randomImages = [
+    "<img class='icon-image ned' src='images/ned.png'>",
+
+    "<img class='icon-image rock' src='images/rock.png'>",
+    "<img class='icon-image rock' src='images/rock2.png'>",
+    "<img class='icon-image rock' src='images/rock3.png'>",
+
+    "<img class='icon-image statue' src='images/statue.png'>",
+
+    "<img class='icon-image sapling' src='images/sapling.png'>",
+
+    "<img class='icon-image shrub' src='images/shrub.png'>",
+
+    "<img class='icon-image tree' src='images/tree.png'>",
+]
+
 function createTile() {
     const tile = document.createElement("div");
     tile.classList.add("tile");
@@ -12,10 +28,10 @@ function createTile() {
     const icon = document.createElement("div");
     icon.classList.add("icon");
 
-    icon.addEventListener("dragstart", drag);
-    icon.addEventListener("drop", drop);
-    icon.addEventListener("dragover", allowDrop);
-    icon.addEventListener("dragleave", disallowDrop); 
+    icon.addEventListener("dragstart", pickupIcon);
+    icon.addEventListener("drop", dropIcon);
+    icon.addEventListener("dragover", hoverTileWhileDragging);
+    icon.addEventListener("dragleave", exitTileWhileDragging); 
 
 
     icon.onclick = function() {
@@ -24,7 +40,9 @@ function createTile() {
 
         if (icon.innerHTML == "") {
             icon.draggable = true;
-            icon.innerHTML = "<img class='icon-image' src='images/ned.png'>";
+            let index = Math.floor(Math.random() * randomImages.length);
+            icon.innerHTML = randomImages[index];
+            icon.firstChild.style.zIndex = getZIndex(icon) * 2;
         } else {
             icon.innerHTML = "";
             icon.draggable = false;
@@ -36,6 +54,13 @@ function createTile() {
     return tile;
 }
 
+function getZIndex(element) {
+
+    var computedStyle = window.getComputedStyle(element);
+    var zIndex = computedStyle.getPropertyValue('z-index');
+    return parseInt(zIndex); //may not need
+}
+
 function createTiles(quantity) {
 
     for (i = 0; i < rows; i++) {
@@ -45,8 +70,7 @@ function createTiles(quantity) {
             const zIndex = i*columns + (rows-j);
 
             tileElement.style.zIndex = zIndex;
-            tileElement.firstChild.style.zIndex = zIndex + 1; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
-
+            tileElement.firstChild.style.zIndex = zIndex * 2; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
             wrapper.appendChild(tileElement);
         }
         
