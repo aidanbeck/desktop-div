@@ -24,9 +24,17 @@
 .icon-image {
     filter: drop-shadow(-2px 6px 5px rgba(0,0,0,0.8)); /*shadow*/
 }
-.icon:hover .icon-image {
+.icon:hover .player-glow {
     filter: drop-shadow(0px 0px 5px cyan); /*selection glow*/
-    /*cyan for moveable, white for not, red for hostile?*/
+}
+.icon:hover .default-glow {
+    filter: drop-shadow(0px 0px 5px white); /*selection glow*/
+}
+.icon:hover .move-glow {
+    filter: drop-shadow(0px 0px 5px gold); /*selection glow*/
+}
+.icon:hover .hostile-glow {
+    filter: drop-shadow(0px 0px 5px red); /*selection glow*/
 }
 
 

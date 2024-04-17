@@ -6,19 +6,19 @@ let rows = Math.floor(document.body.clientHeight / tilePixels);
 rows = columns;
 
 var randomImages = [
-    "<img class='icon-image ned' src='images/ned.png'>",
+    "<img class='icon-image ned player-glow' src='images/ned.png'>",
 
-    "<img class='icon-image rock' src='images/rock.png'>",
-    "<img class='icon-image rock' src='images/rock2.png'>",
-    "<img class='icon-image rock' src='images/rock3.png'>",
+    "<img class='icon-image rock move-glow' src='images/rock.png'>",
+    "<img class='icon-image rock move-glow' src='images/rock2.png'>",
+    "<img class='icon-image rock move-glow' src='images/rock3.png'>",
 
-    "<img class='icon-image statue' src='images/statue.png'>",
+    "<img class='icon-image statue hostile-glow' src='images/statue.png'>",
 
-    "<img class='icon-image sapling' src='images/sapling.png'>",
+    "<img class='icon-image sapling default-glow' src='images/sapling.png'>",
 
-    "<img class='icon-image shrub' src='images/shrub.png'>",
+    "<img class='icon-image shrub default-glow' src='images/shrub.png'>",
 
-    "<img class='icon-image tree' src='images/tree.png'>",
+    "<img class='icon-image tree default-glow' src='images/tree.png'>",
 ]
 
 function createTile() {
