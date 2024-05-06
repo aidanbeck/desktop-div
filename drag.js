@@ -39,4 +39,67 @@ function dropIcon(ev) {
     draggedIcon.innerHTML = "";
     draggedIcon.draggable = false;
     draggedIcon.removeAttribute('id');
-  }
+}
+
+//simple arrow key movement
+var camera = {
+    x:0,
+    y:0,
+    scale: 90, //worldscale
+    element: document.body
+}
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowUp' || event.key === 'w') {
+        camera.y += camera.scale;
+    } else if (event.key === 'ArrowDown' || event.key === 's') {
+        camera.y -= camera.scale;
+    } else if (event.key === 'ArrowLeft' || event.key === 'a') {
+        camera.x += camera.scale;
+    } else if (event.key === 'ArrowRight' || event.key === 'd') {
+        camera.x -= camera.scale;
+    }
+
+    camera.element.style.top = camera.y + 'px';
+    camera.element.style.left = camera.x + 'px';
+
+    if (camera.y <= -1401) {
+        document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "hidden";
+        document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "hidden";
+        document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "hidden";
+
+        document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "visible";
+        document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "visible";
+        document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "visible";
+    } else {
+        document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "visible";
+        document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "visible";
+        document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "visible";
+
+        document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "hidden";
+        document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "hidden";
+        document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "hidden";
+    }
+});
+
+
+//Scrolling & zooming
+window.addEventListener("wheel", function(event) {
+
+    const zoomStep = 8;
+
+    if (event.deltaY > 0) {
+        camera.scale-=camera.scale/zoomStep;
+    } else {
+        camera.scale+=camera.scale/zoomStep;
+    }
+
+    if (camera.scale > 400) {
+        camera.scale = 400;
+    }
+    else if (camera.scale < 35) {
+        camera.scale = 35;
+    }
+
+    scaleChunks(16,16,camera.scale);
+    
+});

@@ -1,12 +1,22 @@
 body {
     height: 100vh;
-    overflow: auto;
+    overflow: hidden;
     margin: 0px;
     scrollbar-width: none;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2), 1fr);
+    grid-template-columns: repeat(3, 0fr); /*!!! these need to change depending on the number of chunks*/
+    grid-template-rows: repeat(2, 0fr);
+
+    /*camera position*/
+    position: absolute;
+    left: 0vh;
+    top: 0vh;
+
+    background-color: rgb(40, 40, 40);
+
+    /*animation*/
+    transition: top 0.1s ease, left 0.1s ease;
 }
 
 .DESKTOP-DIV {
@@ -14,18 +24,15 @@ body {
     /*width: calc(var(--scale) * var(--columns))px;
     height: calc(var(--scale) * var(--rows))px;*/
 
+    transition: height 0.1s ease, width 0.1s ease;
 
     position: relative;
-    left: var(--worldx);
-    top: var(--worldy);
 
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
 
     user-select: none;
-
-    /* transition: left 1s, top 1s; */
 }
 
 /* .DESKTOP-DIV:hover {

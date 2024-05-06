@@ -6,6 +6,10 @@
 
 .tile {
     background-color: black;
+    background-image: url("images/grass.png");
+}
+.dirt {
+    background-color: black;
     background-image: url("images/dirt.png");
 }
 /*.tile:hover {
@@ -53,6 +57,7 @@
     width: 80%;
     left: 10%;
     top: -100%;
+    animation: hover 5s infinite;
 }
 
 .rock {
@@ -71,16 +76,59 @@
     width: 150%;
     top: -85%;
     left: -15%;
+    animation: sway 8s infinite;
+    transform-origin: 50% 100% 0;
 }
 
 .shrub {
     width: 250%;
     top: -60%;
     left: -80%;
+    animation: bush-shake 0.5s infinite;
 }
 
 .tree {
     width: 300%;
     top: -300%;
     left: -70%;
+    animation: sway 8s infinite;
+    transform-origin: 50% 100% 0;
+}
+
+.grave {
+    width: 180%;
+    top: -190%;
+    left: -40%;
+    animation: grave-shake 8s infinite;
+}
+
+@keyframes bush-shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    5% { transform: translate(5px, 5px) rotate(5deg); }
+    10% { transform: translate(0, 0) rotate(0eg); }
+    15% { transform: translate(-5px, 5px) rotate(-5deg); }
+    20% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes hover {
+    0% { transform: translateY(0) }
+    25% { transform: translateY(5px) }
+    50% { transform: translateY(-5px) }
+    75% { transform: translateY(5px) }
+    100% { transform: translateY(0) }
+}
+
+@keyframes sway {
+    0%, 100%{ transform: rotate(-2deg);}
+    50%{ transform: rotate(2deg); }
+}
+
+@keyframes grave-shake {
+    0% { transform: translateX(0) }
+    96% { transform: translateX(0) }
+    97% { transform: translateX(5px) }
+    98% { transform: translateX(-5px) }
+    99% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
 }
