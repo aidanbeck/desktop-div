@@ -62,23 +62,23 @@ document.addEventListener('keydown', function(event) {
     camera.element.style.top = camera.y + 'px';
     camera.element.style.left = camera.x + 'px';
 
-    if (camera.y <= -1401) {
-        document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "hidden";
-        document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "hidden";
-        document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "hidden";
+    // if (camera.y <= -1401) {
+    //     document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "hidden";
+    //     document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "hidden";
+    //     document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "hidden";
 
-        document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "visible";
-        document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "visible";
-        document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "visible";
-    } else {
-        document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "visible";
-        document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "visible";
-        document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "visible";
+    //     document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "visible";
+    //     document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "visible";
+    //     document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "visible";
+    // } else {
+    //     document.getElementsByClassName("DESKTOP-DIV")[0].style.visibility = "visible";
+    //     document.getElementsByClassName("DESKTOP-DIV")[1].style.visibility = "visible";
+    //     document.getElementsByClassName("DESKTOP-DIV")[2].style.visibility = "visible";
 
-        document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "hidden";
-        document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "hidden";
-        document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "hidden";
-    }
+    //     document.getElementsByClassName("DESKTOP-DIV")[6].style.visibility = "hidden";
+    //     document.getElementsByClassName("DESKTOP-DIV")[7].style.visibility = "hidden";
+    //     document.getElementsByClassName("DESKTOP-DIV")[8].style.visibility = "hidden";
+    // }
 });
 
 

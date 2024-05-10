@@ -10,7 +10,7 @@
 }
 .dirt {
     background-color: black;
-    background-image: url("images/dirt.png");
+    background-image: url("images/blight.png");
 }
 /*.tile:hover {
     background-image: url("images/grass.png");
@@ -102,6 +102,30 @@
     animation: grave-shake 8s infinite;
 }
 
+.coyote {
+    width: 100%;
+    top: -20%;
+    animation: turn 4s infinite;
+}
+
+.rat {
+    width: 100%;
+    top: -20%;
+    animation: turn 4s infinite;
+}
+
+.sack {
+    width: 200%;
+    left: -50%;
+    top: -110%;
+    animation: sway 0.2s infinite;
+    transform-origin: 50% 100% 0;
+}
+
+.reversed {
+    transform: scaleX(-1);
+}
+
 @keyframes bush-shake {
     0% { transform: translate(0, 0) rotate(0deg); }
     5% { transform: translate(5px, 5px) rotate(5deg); }
@@ -131,4 +155,13 @@
     98% { transform: translateX(-5px) }
     99% { transform: translateX(5px) }
     100% { transform: translateX(0) }
+}
+
+@keyframes turn {
+    0% { transform: scaleX(1) translateY(0px); }
+    2.5% {transform: translateY(-30px); }
+    5% { transform: scaleX(-1) translateY(0px); }
+    50% { transform: scaleX(-1); }
+    55% { transform: scaleX(1); }
+    100% { transform: scaleX(1); }
 }

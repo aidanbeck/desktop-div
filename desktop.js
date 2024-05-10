@@ -13,7 +13,15 @@ var randomImages = [
     //unnatural
     "<img class='icon-image statue hostile-glow' src='images/statue.png'>",
     "<img class='icon-image ned player-glow' src='images/ned.png'>",
-    "<img class='icon-image grave default-glow' src='images/grave.png'>"
+    "<img class='icon-image grave default-glow' src='images/grave.png'>",
+    "<img class='icon-image coyote hostile-glow' src='images/coyote.gif'>",
+    "<img class='icon-image rat hostile-glow' src='images/rat.gif'>",
+    "<img class='icon-image sack hostile-glow' src='images/uhhhh.gif'>",
+
+    //reversed
+    "<img class='icon-image rock move-glow reversed' src='images/rock.png'>",
+    "<img class='icon-image rock move-glow reversed' src='images/rock2.png'>",
+    "<img class='icon-image rock move-glow reversed' src='images/rock3.png'>",    
 ]
 
 var iconCount = 0;
@@ -38,7 +46,7 @@ function createTile() {
     if (random > 0.995) {
         icon.draggable = true;
         let index = Math.floor(Math.random() * randomImages.length);
-
+        
         if (index == 6 || index == 7 || index == 8) {
             if (random > 0.999999) {
                 index = 6; //rare statue
@@ -70,7 +78,8 @@ function createTile() {
             }
             icon.innerHTML = randomImages[index];
             icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
-            
+            icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
+
         } else {
             icon.innerHTML = "";
             icon.draggable = false;
@@ -123,13 +132,13 @@ const chunk0 = document.getElementsByClassName("DESKTOP-DIV")[0]; //chunk0.style
 const chunk1 = document.getElementsByClassName("DESKTOP-DIV")[1]; //chunk1.style.zIndex = 0;
 const chunk2 = document.getElementsByClassName("DESKTOP-DIV")[2]; //chunk2.style.zIndex = 1;
 
-const chunk3 = document.getElementsByClassName("DESKTOP-DIV")[3]; //chunk3.style.visibility = "hidden";
-const chunk4 = document.getElementsByClassName("DESKTOP-DIV")[4]; //chunk4.style.visibility = "hidden";
-const chunk5 = document.getElementsByClassName("DESKTOP-DIV")[5]; //chunk5.style.visibility = "hidden";
+const chunk3 = document.getElementsByClassName("DESKTOP-DIV")[3]; chunk3.style.display = "none";
+const chunk4 = document.getElementsByClassName("DESKTOP-DIV")[4]; chunk4.style.display = "none";
+const chunk5 = document.getElementsByClassName("DESKTOP-DIV")[5]; chunk5.style.display = "none";
 
-const chunk6 = document.getElementsByClassName("DESKTOP-DIV")[6]; chunk6.style.visibility = "hidden";
-const chunk7 = document.getElementsByClassName("DESKTOP-DIV")[7]; chunk7.style.visibility = "hidden";
-const chunk8 = document.getElementsByClassName("DESKTOP-DIV")[8]; chunk8.style.visibility = "hidden";
+const chunk6 = document.getElementsByClassName("DESKTOP-DIV")[6]; chunk6.style.display = "none";
+const chunk7 = document.getElementsByClassName("DESKTOP-DIV")[7]; chunk7.style.display = "none";
+const chunk8 = document.getElementsByClassName("DESKTOP-DIV")[8]; chunk8.style.display = "none";
 
 
 var worldscale = camera.scale;
