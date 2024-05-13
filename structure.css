@@ -21,9 +21,6 @@ body {
 
 .DESKTOP-DIV {
 
-    /*width: calc(var(--scale) * var(--columns))px;
-    height: calc(var(--scale) * var(--rows))px;*/
-
     transition: height 0.1s ease, width 0.1s ease;
 
     position: relative;
