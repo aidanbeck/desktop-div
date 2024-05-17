@@ -1,28 +1,4 @@
-body {
-    height: 100vh;
-    overflow: hidden;
-    margin: 0px;
-    scrollbar-width: none;
-
-    display: grid;
-    grid-template-columns: repeat(3, 0fr); /*!!! these need to change depending on the number of chunks*/
-    grid-template-rows: repeat(2, 0fr);
-
-    /*camera position*/
-    position: absolute;
-    left: 0vh;
-    top: 0vh;
-
-    background-color: rgb(40, 40, 40);
-
-    /*animation*/
-    transition: top 0.1s ease, left 0.1s ease;
-}
-
 .DESKTOP-DIV {
-
-    transition: height 0.1s ease, width 0.1s ease;
-
     position: relative;
 
     display: grid;
@@ -31,11 +7,6 @@ body {
 
     user-select: none;
 }
-
-/* .DESKTOP-DIV:hover {
-    left: -10%;
-    top: -10%;
-} */
 
 .tile {
     background-size: 100%;
