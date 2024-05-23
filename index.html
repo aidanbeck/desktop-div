@@ -1,15 +1,49 @@
+<!-- This is an example of how to use desktop-div for your website. -->
+
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="structure.css">
         <link rel="stylesheet" type="text/css" href="aesthetics.css">
+        <style>
+            /* image scaling & anchoring*/
+            .exampleFile {
+                width: 80%;
+                height: 80%;
 
+                top: 10%;
+                left:10%;
+
+                image-rendering: pixelated;
+            }
+        </style>
     </head>
     <body>
 
-        <div class = "DESKTOP-DIV"></div>
+        <div class = "🖥️DIV-desktop"></div>
+
         <script src="desktop-div.js"></script>
+
+        <script>
+            //Initialize Desktop Div
+            const div = document.getElementsByClassName("🖥️DIV-desktop")[0];
+            createGrid(div, 16, 8, 90);
+
+            /*
+                Use "onClickFunction" to redefine onClick behavior to anything you need.
+                This example will delete an icon, or create a new one if there isn't one.
+            */
+            onClickFunction = function(icon) {
+
+                if (!icon.hasChildNodes()) {
+                    createIconImage(icon, "exampleFile", "icon.png");
+                } else {
+                    removeIconImage(icon);
+                }
+            };
+
+        </script>
         
     </body>
 </html>

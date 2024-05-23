@@ -1,34 +1,73 @@
-function createTile() {
-    const tile = document.createElement("div");
-    tile.classList.add("tile");
+//I probably need to make a diagram/description of slots vs icons vs images vs divs.
+//desktop-div.js and structure.css should be moved into a "desktop-div" folder.
+//Should the middle "icon" div even exist? It is likely less performant
+
+function createSlot(index) {
+
+    const slot = document.createElement("div");
+    slot.classList.add("🖥️DIV-slot");
 
     const icon = document.createElement("div");
-    icon.classList.add("icon");
+    icon.classList.add("🖥️DIV-icon");
 
+    icon.addEventListener("click", clickIcon);
     icon.addEventListener("dragstart", pickupIcon);
     icon.addEventListener("drop", dropIcon);
-    icon.addEventListener("dragover", hoverTileWhileDragging);
-    icon.addEventListener("dragleave", exitTileWhileDragging);
+    icon.addEventListener("dragover", hoverSlotWhileDragging);
+    icon.addEventListener("dragleave", exitSlotWhileDragging);
 
-    icon.onclick = function() {
+    slot.appendChild(icon);
 
-        icon.style.backgroundColor = "";
+    return slot;
+}
 
-        if (icon.innerHTML == "") {
-            icon.draggable = true;
-            icon.innerHTML = "<img class='icon-image examplefile' src='icon.png'>";
-            icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
-            icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
+function createIconImage(icon, imageClass, imageSource) {
 
-        } else {
-            icon.innerHTML = "";
-            icon.draggable = false;
-        }
-    }
+    icon.draggable = true; //It has an image now, so it should be draggable.
 
-    tile.appendChild(icon);
-    
-    return tile;
+    const image = document.createElement("img");
+
+    image.style.zIndex = getZIndex(icon) * 2; //why *2?
+    image.classList.add("🖥️DIV-iconImage");
+    image.classList.add(imageClass);
+
+    /*
+        This hack guarentees that a gif will start playing at the beginning.
+        Without it, a gif will sync up with any identical gifs that already exist on the page.
+        Could be unoptomized. Should this only happen if the image is a gif?
+    */
+    image.src = imageSource + '?id=' + Math.floor(Math.random() * 100);
+
+    icon.appendChild(image);
+}
+
+function removeIconImage(icon) {
+    icon.innerHTML = ""; //remove <img> element
+    icon.draggable = false; //it has no image now, so it should no longer be draggable.
+}
+
+function clickIcon(event) {
+
+    const icon = event.target;
+    onClickFunction(icon);
+}
+
+// Empty function. The developer can redefine this to customize onClick behavior.
+let onClickFunction = function(icon) {};
+
+/*
+    Returns the index of an icon.
+    Handy when using desktop-div as a gui for an array. With a click you can grab the index.
+    To get the index of an icon instead of a slot, simply input "icon.parentNode".
+
+    It may be more optimized to store the index inside of each slot in some cases.
+*/
+function getSlotIndex(slot) {
+
+    const nodes = Array.prototype.slice.call( document.getElementsByClassName("🖥️DIV-slot") );
+    const index = nodes.indexOf(slot);
+
+    return index;
 }
 
 function getZIndex(element) {
@@ -38,17 +77,17 @@ function getZIndex(element) {
     return parseInt(zIndex); //may not need
 }
 
-function createTiles(wrapper, columns, rows) {
+function createSlots(wrapper, columns, rows) {
 
     for (i = 0; i < rows; i++) {
         for (j=0; j < columns; j++) {
-            let tileElement = createTile();
+            let slotElement = createSlot(i+j);
             
             //const zIndex = i*rows + (columns-j);
 
-            //tileElement.style.zIndex = i + (1/j);
-            tileElement.firstChild.style.zIndex = i + 2; //nessecary so that the tile underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
-            wrapper.appendChild(tileElement);
+            //slotElement.style.zIndex = i + (1/j);
+            slotElement.firstChild.style.zIndex = i + 2; //necessary so that the slot underneath will not get dragged along with the icon. I have no idea why that happens and it took me hours to figure this out.
+            wrapper.appendChild(slotElement);
         }
         
     }
@@ -65,14 +104,17 @@ const createGrid = (wrapper,columns,rows,scale) => {
     wrapper.style.height = scale*rows + "px";
     wrapper.style.width = scale*columns + "px";
 
-    createTiles(wrapper, columns, rows);
+    createSlots(wrapper, columns, rows);
 }
 
-const chunk0 = document.getElementsByClassName("DESKTOP-DIV")[0];
-createGrid(chunk0, 16, 8, 90);
+window.addEventListener('resize', rescale);
+function rescale() {
+    // scaleChunks(chunk0,15*5,15,75);
+    // scaleChunks(truck, 7, 11, 75);
+}
 
-function scaleChunks(columns,rows,scale) {
-    const elements = document.getElementsByClassName("DESKTOP-DIV");
+function scaleChunks(chunk,columns,rows,scale) {
+    const elements = chunk;
 
     for (i = 0; i < elements.length; i++) {
         elements[i].style.height = scale*rows + "px";
@@ -81,26 +123,25 @@ function scaleChunks(columns,rows,scale) {
 }
 
 
-//fired while mouse is hovering over a tile (while dragging)
+//fired while mouse is hovering over a slot (while dragging)
 //this is necessary because dragging cancels the standard hover events
-function hoverTileWhileDragging(ev) {
+function hoverSlotWhileDragging(ev) {
     
     ev.preventDefault(); //not sure why *exactly* this is needed, but it gets rid of the 🚫 cursor, and dragging fails without it
-    ev.target.classList.add("dragging-over");
+    ev.target.classList.add("🖥️DIV-draggingOver");
 }
 
-//fired when the mouse exits the bounds of a tile (while dragging)
-function exitTileWhileDragging(ev) {
-    ev.target.classList.remove("dragging-over");
+//fired when the mouse exits the bounds of a slot (while dragging)
+function exitSlotWhileDragging(ev) {
+    ev.target.classList.remove("🖥️DIV-draggingOver");
 }
   
 //fired when icon is picked up
 function pickupIcon(ev) {
-
-    let data = "draggingid"; //this will eventually be the tile # type and it's location
+    let data = "draggingid"; //this will eventually be the icon # type and it's location
     ev.dataTransfer.setData("text", data); //I could also store this in my own global variable instead
 
-    //Sets the ID of the pickup tile to "draggingid" so the element can be searched later
+    //Sets the ID of the pickup icon to "draggingid" so the element can be searched later
     ev.target.id = data; 
 }
 
@@ -115,11 +156,18 @@ function dropIcon(ev) {
     //place cloned icon at target
     ev.target.innerHTML = "";
     ev.target.draggable = true;
-    ev.target.classList.remove("dragging-over");
+    ev.target.classList.remove("🖥️DIV-draggingOver");
     ev.target.appendChild(clonedIcon.firstChild);
 
     //delete original icon
     draggedIcon.innerHTML = "";
     draggedIcon.draggable = false;
     draggedIcon.removeAttribute('id');
+    
+    const nodes = Array.prototype.slice.call( document.getElementsByClassName("🖥️DIV-slot") );
+    const oldIndex = nodes.indexOf( draggedIcon.parentNode );
+    const newIndex = nodes.indexOf( ev.target.parentNode );
+
+    _writeFromJS(oldIndex, 0);
+    _writeFromJS(newIndex, draggedIcon.tile); // I believe .tile refers to the tile data, not the slot.
 }

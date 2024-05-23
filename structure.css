@@ -1,4 +1,4 @@
-.DESKTOP-DIV {
+.🖥️DIV-desktop {
     position: relative;
 
     display: grid;
@@ -8,19 +8,19 @@
     user-select: none;
 }
 
-.tile {
+.🖥️DIV-slot {
     background-size: 100%;
     margin:0px;
     position:relative;
 }
 
-.icon {
+.🖥️DIV-icon {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.icon-image {
+.🖥️DIV-iconImage {
     position: absolute;
     pointer-events: none; /*lets hovering mouse pass through*/
 }
