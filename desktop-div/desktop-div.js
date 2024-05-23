@@ -8,7 +8,7 @@ const desktopDiv = {
         Initialization Functions:
     */
 
-    createDesktop(element,columns,rows,scale) {
+    createDesktop(element, columns, rows, scale, measurement) {
 
         element.classList.add("🖥️DIV-desktop");
     
@@ -16,8 +16,8 @@ const desktopDiv = {
         element.style.setProperty("--rows", rows);
         element.style.setProperty("height", scale*rows);
     
-        element.style.height = scale*rows + "px";
-        element.style.width = scale*columns + "px";
+        element.style.height = scale*rows + measurement;
+        element.style.width = scale*columns + measurement;
     
         this.createSlots(element, columns, rows);
     },
