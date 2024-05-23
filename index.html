@@ -4,19 +4,23 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        
         <link rel="stylesheet" type="text/css" href="desktop-div/structure.css">
         <link rel="stylesheet" type="text/css" href="aesthetics.css">
+
         <style>
-            /* image scaling & anchoring*/
+            
+            /*
+                This is how you can "scale" and "anchor" an image icon.
+            */
             .exampleFile {
                 width: 80%;
                 height: 80%;
 
                 top: 10%;
                 left:10%;
-
-                image-rendering: pixelated;
             }
+
         </style>
     </head>
     <body>
@@ -26,9 +30,16 @@
         <script src = "desktop-div/desktop-div.js"></script>
 
         <script>
-            //Initialize Desktop Div
-            const div = document.getElementById("exampleDesktop");
-            desktopDiv.createDesktop(div, 16, 8, 12, "vh");
+
+            desktopDiv.createDesktop (
+
+                document.getElementById("exampleDesktop"), // Element
+                16,  //  Columns
+                8,   //  Rows
+                12,  //  Scale
+                "vh" //  Measurement
+
+            );
 
             /*
                 Use "onClickFunction" to redefine onClick behavior to anything you need.

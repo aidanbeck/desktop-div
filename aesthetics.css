@@ -26,6 +26,7 @@
 
 .🖥️DIV-iconImage {
     filter: drop-shadow(-2px 6px 5px rgba(0,0,0,0.8));
+    image-rendering: pixelated;
 }
 
 /* targets the icon-image when the icon is being hovered over. */
