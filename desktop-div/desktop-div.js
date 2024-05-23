@@ -1,6 +1,5 @@
 //I probably need to make a diagram/description of desktops, slots, icons, & iconImages 
 //Should the middle "icon" element even exist? It is likely less performant
-//desktop-div.js and structure.css should be moved into a "desktop-div" folder.
 //"scale" should be more intuitive.
 
 const desktopDiv = {
